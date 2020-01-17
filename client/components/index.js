@@ -1,3 +1,5 @@
 export {default as BrowseProducts} from './browseProducts'
 export {default as SingleProduct} from './singleProduct'
+export { default as Login } from './login'
 export { Navigation } from './navigation'
+export { Footer } from './footer'

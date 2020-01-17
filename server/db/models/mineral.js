@@ -4,7 +4,7 @@ const db = require('../db')
 const Mineral = db.define('mineral', {
     name: {
         type: Sequelize.STRING,
-        unique: true,
+        // unique: true,
         allowNull: false
     },
     description: {

@@ -62,6 +62,50 @@ const minerals = [
     }
 ]
 
+class RandomRock {
+    constructor(rockname, price) {
+        this.name = rockname;
+        this.description = "HOT NEW ROCK! EXCLUSIVE! ONLY AT MINERALOGIE.";
+        this.imageURL = '/images/defaultmineral.jpg';
+        this.price = price
+    }
+}
+
+const randomRockArray = [];
+
+
+const generate = (array) => {
+    const pf = ['di', 'bo', 'ig', 'vege', 'mito', 'wombo', 'meta'];
+    const bs = ['el', 'eld', 'tir', 'nef', 'eth', 'ith', 'tal', 'ral', 'ort', 'thul', 'amn', 'sol', 'shael', 'dol', 'hel', 'lo', 'lum', 'ko', 'fal', 'lem', 'pul', 'um', 'mal', 'ist', 'gul', 'vex', 'ohm', 'lo', 'sur', 'ber', 'jah', 'cham', 'zod' ];
+    const sf = ['ite', 'site', 'mite', 'nite', 'lite', 'lyte', 'trite', 'tryte', 'stone', 'rock', 'jigae'];
+
+    for (let i = 0; i < 50; i++) {
+        let prefix = '';
+        let base = '';
+        let suffix = '';
+        let composite = '';
+        let price = Math.random() * 1000
+
+        if (Math.random() > .75) {
+            prefix = pf[Math.floor(Math.random() * pf.length)]
+        } 
+
+        base = bs[Math.floor(Math.random() * bs.length)]
+        suffix = sf[Math.floor(Math.random() * sf.length)]
+
+        composite = prefix + base + suffix;
+        composite = composite.charAt(0).toUpperCase() + composite.substring(1)
+        
+        let formation = new RandomRock(composite, price)
+        array.push(formation)
+
+    }
+    return array;
+}
+
+generate(randomRockArray)
+console.log(randomRockArray);
+
 async function seed() {
     await db.sync({force: true})
     console.log('database synchronized!')
@@ -69,6 +113,7 @@ async function seed() {
     await Promise.all([
         User.bulkCreate(users, {returning: true}),
         Mineral.bulkCreate(minerals, {returning: true}),
+        Mineral.bulkCreate(randomRockArray, {returning: true})
     ])
 }
 

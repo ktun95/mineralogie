@@ -4,15 +4,18 @@ import { Link } from 'react-router-dom'
 export const Navigation = () => {
     
     return(
-        <div class="header">
-            <div id="nav" style={{border: '1px solid red'}}>
-                <div className="nav-item"> Home </div> 
-                <div className="nav-item"> About </div> 
-                <div className="nav-item">
+        <div className="header">
+            <ul id="nav" style={{border: '1px solid red'}}>
+                <li className="nav-item"> Home </li> 
+                <li className="nav-item"> About </li> 
+                <li className="nav-item">
                     <Link to="/products"> Browse </Link>
-                </div>
-                <div className="nav-item"> Cart </div>
-            </div>
+                </li>
+                <li className="nav-item"> Cart </li>
+                <li className="nav-item"> 
+                    <Link to="/login"> Login </Link>
+                </li>
+            </ul>
         </div>
     )
 }

@@ -5,11 +5,14 @@ const PORT = 3030;
 
 app.use(express.static(path.join(__dirname, '..', '/public')))
 
-app.use('/api', require('./api/products'))//change this /api later
+app.use('/api', require('./api'))//change this /api later
 
 app.use( '*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
 })
+
+
+//error handling endware needed
 
 app.listen(PORT, () => {
     console.log(`Marketing minerals on port ${PORT}`)
