@@ -1,8 +1,8 @@
 import React from 'react'
+import SingleProduct from './singleProduct' 
 import { connect } from 'react-redux'
 import {ProductCard} from './productCard'
-import SingleProduct from './singleProduct' 
-import {fetchProducts} from '../store/reducers/products'
+import {fetchProducts} from '../store/'
 
 class BrowseProducts extends React.Component {
     constructor() {
@@ -25,14 +25,14 @@ class BrowseProducts extends React.Component {
 
     handleUnmount(event) {
         console.dir(event.target)
-        if (event.target.className == 'single-product-overlay') {
+        if (event.target.className === 'single-product-overlay') {
             this.setState({selectedProduct: null})
         }
     }
 
     render() {
-        const products = this.props.products
-        console.log(products)
+        const products = this.props.products.products
+        console.log("products from store", products)
         return (
             <div className="browse-products">
                 <h1 className="category-title"> Specimens </h1>

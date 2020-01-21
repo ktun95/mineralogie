@@ -28,7 +28,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case GET_PRODUCTS: 
+        case GET_PRODUCTS:
             return {...state, products: [...action.products]}
         // case VIEW_SINGLE_PRODUCT:
         //     return {...state, viewProduct: action.product }
