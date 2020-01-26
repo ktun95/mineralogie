@@ -30,8 +30,8 @@ form {
 .category-title {
     text-align: center;
     
-}
 
+}
 .product-card {
     width: 220px;
     height: 400px;
@@ -68,15 +68,15 @@ form {
     height: 100%;
     top: 0;
     left: 0;
-    /* right: 0;
+    /* right:  0;
     bottom: 0; */
     overflow: auto; /*enable scroll if needed */
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.header {
+#header {
     width: 90%;
-    height: 77px;
+    height: 77px; /* remember to change line-height on .nav-item */
     background-color: #428b6f;  
     margin: auto;
 }
@@ -94,7 +94,8 @@ form {
     list-style-type: none;
     flex: 1 1 auto;
     text-align: center;
-    vertical-align: middle;
+    /* vertical-align: middle; */
+    line-height: 77px; /* remember to change height on #header */
 }
 
 .login {

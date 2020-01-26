@@ -14,7 +14,6 @@ export const fetchProducts = () => async dispatch => {
     try {
         const {data} = await axios.get('/api/products/minerals')
         if (typeof data !== 'object') throw new Error('resource not found')//maybe this line of code shouild live in the corresponding api route instead
-        console.log(typeof data, data)
         dispatch(getProducts(data))
     } catch (err) {
         console.error(err)

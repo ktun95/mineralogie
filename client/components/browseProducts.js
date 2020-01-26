@@ -8,7 +8,7 @@ class BrowseProducts extends React.Component {
     constructor() {
         super()
         this.state = {
-            selectedProduct: null // product id
+            selectedProduct: null
         }
         this.handleUnmount = this.handleUnmount.bind(this)
         this.viewProduct = this.viewProduct.bind(this)
@@ -24,15 +24,13 @@ class BrowseProducts extends React.Component {
     }
 
     handleUnmount(event) {
-        console.dir(event.target)
         if (event.target.className === 'single-product-overlay') {
             this.setState({selectedProduct: null})
         }
     }
 
     render() {
-        const products = this.props.products.products
-        console.log("products from store", products)
+        const products = this.props.products
         return (
             <div className="browse-products">
                 <h1 className="category-title"> Specimens </h1>
@@ -52,7 +50,7 @@ class BrowseProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    products: state.products
+    products: state.productsReducer.products
 })  
 
 const mapDispatchToProps = (dispatch) => ({

@@ -9,8 +9,9 @@ const getUser = (user) => ({type: GET_USER, user})
 //THUNK CREATORS
 export const fetchUser = (userInfo) => async dispatch => {
     try {
-        const {data} = await axios.get('/api/user', userInfo)
+        const {data} = await axios.post('/api/user', userInfo)
         dispatch(getUser(data))
+        
     } catch (err) {
         console.error(err)    
     }

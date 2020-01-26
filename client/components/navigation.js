@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export const Navigation = () => {
+const Navigation = (props) => {
     
     return(
-        <div className="header">
+        <div id="header">
             <ul id="nav" style={{border: '1px solid red'}}>
                 <li className="nav-item"> Home </li> 
                 <li className="nav-item"> About </li> 
@@ -13,9 +14,18 @@ export const Navigation = () => {
                 </li>
                 <li className="nav-item"> Cart </li>
                 <li className="nav-item"> 
+                    {props.user ? 
                     <Link to="/login"> Login </Link>
+                    : props.user.email
+                    }
                 </li>
             </ul>
         </div>
     )
 }
+
+const mapStateToProps = state => ({
+    user: state.userReducer.user
+})
+
+export default connect(mapStateToProps)(Navigation)
