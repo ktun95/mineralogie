@@ -1,7 +1,7 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import { fetchUser } from '../store/reducers/user'
-import axios from 'axios'
+// import axios from 'axios'
 import { fetchUser } from '../store/reducers/user'
 
 class Login extends React.Component {
@@ -21,8 +21,9 @@ class Login extends React.Component {
         })
     }
 
-    handleClick() {
-        this.props.fetchUser(this.state)
+    async handleClick() {
+        const user = await this.props.fetchUser(this.state)
+        console.log('USER:', user)
     }
 
     // async testLogin(body) {
@@ -40,6 +41,8 @@ class Login extends React.Component {
     // }
 
     render() {
+        if (this.props.user.email) return (<Redirect to="/profile" />)
+
         return (
             <div className="login">
                 <form>
@@ -86,4 +89,4 @@ const mapDispatchToProps = dispatch => ({
     fetchUser: (userInfo) => dispatch(fetchUser(userInfo))
 })
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

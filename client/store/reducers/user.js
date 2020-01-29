@@ -10,10 +10,11 @@ const getUser = (user) => ({type: GET_USER, user})
 export const fetchUser = (userInfo) => async dispatch => {
     try {
         const {data} = await axios.post('/api/user', userInfo)
+        console.log('this the data',data)
         dispatch(getUser(data))
-        
+        return (data)
     } catch (err) {
-        console.error(err)    
+        console.error("erAESFDZF", err)   
     }
 }
 
