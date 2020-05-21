@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { BrowseProducts, SingleProduct, Login, Profile } from './components'
 
 export const Routes = () => {
@@ -10,6 +10,7 @@ export const Routes = () => {
                 <Route path="/products" component={BrowseProducts} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profile} />
+                <Route path="/about" component={About} />
             </div>
         </div>
     )
