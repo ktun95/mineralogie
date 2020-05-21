@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { BrowseProducts, SingleProduct, Login, Profile } from './components'
+import { BrowseProducts, SingleProduct, Login, Profile, About } from './components'
 
 export const Routes = () => {
     return (

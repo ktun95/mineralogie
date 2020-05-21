@@ -8,7 +8,7 @@ const db = new Sequelize(
     databaseURL, {
         dialect: 'postgres',
         protocol: 'postgres',
-        logging: true
+        logging: false
     }
 )
 
