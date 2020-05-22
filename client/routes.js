@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { BrowseProducts, SingleProduct, Login, Profile, About } from './components'
+import { BrowseProducts, SingleProduct, Login, SignUpForm, About } from './components'
 
 export const Routes = () => {
     return (
@@ -12,7 +12,8 @@ export const Routes = () => {
                 <Route path="/products/:id" component={SingleProduct} />
                 <Route path="/products" component={BrowseProducts} />
                 <Route path="/login" component={Login} />
-                <Route path="/profile" component={Profile} />
+                <Route path="/signup" component={SignUpForm} />
+                {/* <Route path="/profile" component={Profile} /> */}
                 <Route path="/about" component={About} />
             </div>
         </div>

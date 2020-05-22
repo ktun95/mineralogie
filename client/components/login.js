@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 // import axios from 'axios'
 import { fetchUser } from '../store/reducers/user'
@@ -62,7 +62,8 @@ class Login extends React.Component {
                         value={this.state.password}
                         onChange={this.handleChange} /> <br />
                 </form>
-                <button type="submit" onClick={this.handleClick}> Test Login! </button>
+                <button type="submit" onClick={this.handleClick}> Test Login! </button> <br />
+                <Link to="/signup"> Sign Up! </Link>
             </div>
         )
     }

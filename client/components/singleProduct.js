@@ -49,7 +49,8 @@ export default class SingleProduct extends React.Component {
                             <p>{this.props.product.description}</p>
                             <button onClick={this.dec}>-</button>
                             <form value={this.state.quantity}>{this.state.quantity}</form>
-                            <button onClick={this.inc}>+</button>     
+                            <button onClick={this.inc}>+</button>
+                                 
                         </React.Fragment>
                     : <p>Loading...</p>}
                 </div>
