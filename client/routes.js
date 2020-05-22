@@ -7,7 +7,7 @@ export const Routes = () => {
         <div id="content-container">
             <div id="routes">
                 <Route exact path="/">
-                    <Redirect to="/browse" />
+                    <Redirect to="/products" />
                 </Route>
                 <Route path="/products/:id" component={SingleProduct} />
                 <Route path="/products" component={BrowseProducts} />
