@@ -23,6 +23,20 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
+router.post('/availability', async(req, res, next) => { //this route will be used to check availability of a username
+    const desiredUsername = req.body.username
+    try {
+        const foundUser = await User.findOne({
+            where: {
+                email: desiredUsername
+        }})
+
+    res.json({ usernameAvailable: !foundUser})
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.post('/', async (req, res, next) => {
     console.log('LOGIN ROUTE HIT')
     const userdata = req.body

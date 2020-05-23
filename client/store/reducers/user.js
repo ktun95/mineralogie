@@ -13,7 +13,7 @@ export const fetchUser = (userInfo) => async dispatch => {
             url: '/api/auth/login',
             method: 'get'
         })
-        console.log('this the data',data)
+        console.log('this the data', data)
         dispatch(getUser(data))
         return (data)
     } catch (err) {

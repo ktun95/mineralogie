@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import axios from 'axios'
 
 export const SignUpForm = () => {
     const [username, setUsername] = useState('')
@@ -12,6 +14,24 @@ export const SignUpForm = () => {
         setPassword(e.target.value)
     }
 
+    const handleSubmit = async (usr, pwrd) => {
+        console.log('handleSubmit')
+        //password validation
+
+        //username validation
+
+        const {data} = await axios({
+            method: 'post',
+            url: 'api/user/availability',
+            data: {
+                username: usr,
+                password: pwrd
+            }
+        })
+
+        console.log(data)
+    }
+
     return (
         <div>
             <form>
@@ -23,7 +43,7 @@ export const SignUpForm = () => {
                         value={username}
                         onChange={handleUsernameChange}
                     />
-                Username: 
+                Password: 
                     <input
                         type="text"
                         name="Username"
@@ -31,8 +51,8 @@ export const SignUpForm = () => {
                         value={password}
                         onChange={handlePasswordChange}
                     />
-
-            </form>     
+            </form>   
+            <button type="submit" onClick={() => handleSubmit(username, password)}> sign up</button>
         </div>
     )
 }
