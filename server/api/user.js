@@ -1,6 +1,28 @@
 const router = require('express').Router()
 const { User, Cart } = require('../db/models')
 
+router.post('/signup', async(req, res, next) => { //this route will be used to check availability of a username
+    const desiredUsername = req.body.username
+    const desiredPassword = req.body.password
+
+    try {
+        const newUser = await User.findOrCreate({
+            where: {
+                email: desiredUsername,
+                password: desiredPassword
+        }})
+
+        if (newUser[1]) { // true when new user row is create, false otherwise
+            res.json({created: true})
+        } else {
+            res.json({created: false})
+        }
+
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.get(':id/cart', async (req, res, next) => {
     const userId = req.params.id
     try {
@@ -18,20 +40,6 @@ router.get('/:id', async (req, res, next) => {
     try {
         const user = await User.findByPk(userId)
         res.json(user)
-    } catch (err) {
-        next(err)
-    }
-})
-
-router.post('/availability', async(req, res, next) => { //this route will be used to check availability of a username
-    const desiredUsername = req.body.username
-    try {
-        const foundUser = await User.findOne({
-            where: {
-                email: desiredUsername
-        }})
-
-    res.json({ usernameAvailable: !foundUser})
     } catch (err) {
         next(err)
     }

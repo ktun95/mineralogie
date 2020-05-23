@@ -1,11 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
 export const SignUpForm = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [created, setCreated] = useState(false)
 
+    useEffect(() => {
+        if (created) {
+            axios({
+                method: 'put',
+                url: '/api/auth/login',
+                data: {
+                    
+                }
+            })
+        }
+    })
     const handleUsernameChange = (e) => {
         setUsername(e.target.value)
     }
@@ -22,15 +34,22 @@ export const SignUpForm = () => {
 
         const {data} = await axios({
             method: 'post',
-            url: 'api/user/availability',
+            url: 'api/auth/signup',
             data: {
                 username: usr,
                 password: pwrd
             }
         })
 
+        if (data.created) setCreated(true)      
         console.log(data)
     }
+    if (created) {
+        return (
+            <div>
+                <span>Sign up successful!</span>
+            </div>
+    )}
 
     return (
         <div>

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const User = require( '../db/models')
+const {User} = require( '../db/models')
 
 router.post('/login', async (req, res, next) => {
     console.log(req.body.data)
@@ -16,26 +16,21 @@ router.post('/login', async (req, res, next) => {
 })
 
 router.post('/signup', async (req, res, next) => {
-    console.log(req.body.data)
-    const [username, password] = req.body.data
+    console.log('attempting sign-up with', req.body)
+    const {username, password} = req.body
     try {
        const [user, created] = await User.findOrCreate({
-           where: {username},
+           where: {email: username},
            defaults: {
                password
            }
        })
 
-       if (!created) {
-        console.log('Username already taken')
-        res.end()
+       if (created) { // true when new user row is create, false otherwise
+        res.json({created: true})
         } else {
-        console.log(user) 
-        res.end()
-        } 
-
-        
-    //    if (user === null) throw 
+            res.json({created: false})
+        }
     } catch (err) {
         next(err)
     }
