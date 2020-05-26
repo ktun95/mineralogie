@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { fetchUser } from '../store/reducers/user'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
-export const SignUpForm = () => {
+const SignUpForm = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [created, setCreated] = useState(false)
 
     useEffect(() => {
         if (created) {
-            axios({
-                method: 'put',
-                url: '/api/auth/login',
-                data: {
-                    
-                }
-            })
+            fetchUser({username, password})
         }
     })
+
     const handleUsernameChange = (e) => {
         setUsername(e.target.value)
     }
@@ -54,7 +50,7 @@ export const SignUpForm = () => {
     return (
         <div>
             <form>
-                Username: 
+                Username:
                     <input
                         type="text"
                         name="Username"
@@ -62,7 +58,7 @@ export const SignUpForm = () => {
                         value={username}
                         onChange={handleUsernameChange}
                     />
-                Password: 
+                Password:
                     <input
                         type="text"
                         name="Username"
@@ -76,4 +72,8 @@ export const SignUpForm = () => {
     )
 }
 
-export default SignUpForm
+const matchDispatchToProps = (dispatch) => ({
+    fetchUser: () => dispatch(fetchUser())
+})
+
+export default connect(null, matchDispatchToProps)(SignUpForm)

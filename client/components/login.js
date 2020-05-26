@@ -8,7 +8,7 @@ class Login extends React.Component {
     constructor() {
         super()
         this.state = {
-            email: '',
+            username: '',
             password: ''
         }
             
@@ -50,7 +50,7 @@ class Login extends React.Component {
                     Username:
                     <input
                         type="text"
-                        name="email"
+                        name="username"
                         placeholder="Username"
                         value={this.state.email}
                         onChange={this.handleChange} /> <br />

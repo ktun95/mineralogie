@@ -8,16 +8,18 @@ const getUser = (user) => ({type: GET_USER, user})
 
 //THUNK CREATORS
 export const fetchUser = (userInfo) => async dispatch => {
+    const {username, password} = userInfo
     try {
         const {data} = await axios({
             url: '/api/auth/login',
-            method: 'get'
+            method: 'post',
+            data: {username, password}
         })
-        console.log('this the data', data)
+
         dispatch(getUser(data))
         return (data)
     } catch (err) {
-        console.error("erAESFDZF", err)   
+        console.error(err)   
     }
 }
 
